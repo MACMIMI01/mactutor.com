@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎮 Game Hall</title>
+  <link rel="stylesheet" href="../assets/styles/styles.css" />
+  <style>
+    body {
+      background-color: #111;
+      font-family: 'Courier New', monospace;
+      color: cyan;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    .game-card {
+      border: 2px solid cyan;
+      padding: 15px;
+      border-radius: 10px;
+      background-color: #222;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .game-card:hover {
+      background-color: #333;
+      transform: scale(1.05);
+    }
+    .game-title {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎮 Game Hall</h1>
+  <div class="game-grid">
+    <div class="game-card" onclick="location.href='game/Space Shooter.html'">
+      🚀<div class="game-title">Space Shooter</div>
+    </div>
+    <div class="game-card" onclick="location.href='game/Brick Breaker.html'">
+      🧱<div class="game-title">Brick Breaker</div>
+    </div>
+    <div class="game-card" onclick="location.href='game/Snake.html'">
+      🐍<div class="game-title">Snake</div>
+    </div>
+    <div class="game-card" onclick="location.href='game/Pac-Man style.html'">
+      👻<div class="game-title">Pac-Man Style</div>
+    </div>
+    <div class="game-card" onclick="location.href='game/Platformer.html'">
+      🕹️<div class="game-title">Platformer</div>
+    </div>
+    <div class="game-card" onclick="location.href='game/Frogger style.html'">
+      🐸<div class="game-title">Frogger Style</div>
+    </div>
+  </div>
+</body>
+</html>
