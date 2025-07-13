@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="theme-colour" content="#FFD700">
+  <title>Welcome to TestHall!</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column; /* Stack children vertically */
+      justify-content: center; /* Center content vertically initially */
+      align-items: center;
+      transition: background-image 1s ease-in-out;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .main-content {
+      text-align: center;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      max-width: 600px;
+      width: 90%;
+      box-sizing: border-box;
+      /* Allow content to shrink if needed, but not too much */
+      flex-shrink: 0; /* Prevent main-content from shrinking below its natural size */
+      margin-bottom: 70px; /* Add margin to prevent overlap with footer */
+      position: relative; /* Needed for z-index if logo is placed inside */
+      z-index: 10; /* Ensure content is above footer */
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #F8E231;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+    }
+
+    .action-button {
+      background-color: #020169;
+      color: #FFE700;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.2em;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .action-button:hover {
+      background-color: #145cb3;
+    }
+
+    footer {
+      position: fixed; /* Changed to fixed for consistent bottom placement */
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      background-color: #020169;
+      color: #FFE700;
+      font-size: 0.9em;
+      box-sizing: border-box;
+      z-index: 100; /* Ensure footer is always on top */
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      box-shadow:0px rgba(0, 0, 0, 0.5);
+      z-index: 100; /* Ensure logo is above other content if placed in body */
+    }
+
+    /* Media query for smaller screens/landscape orientation */
+    @media (max-height: 500px) { /* Adjust this value as needed based on common landscape heights */
+        body {
+            justify-content: flex-start; /* Align content to the top on short screens */
+            padding-top: 50px; /* Add padding to push content down if logo is fixed */
+            padding-bottom: 70px; /* Add padding to ensure space for footer */
+            box-sizing: border-box;
+        }
+        .main-content {
+            margin-top: auto; /* Push content to center if body height is flexible */
+            margin-bottom: 50px; /* Ensure space above footer */
+        }
+        h1 {
+            font-size: 2em; /* Smaller font for limited height */
+        }
+        p {
+            font-size: 1em; /* Smaller font for limited height */
+        }
+        .action-button {
+            padding: 10px 20px; /* Smaller button for limited height */
+            font-size: 1em;
+        }
+    }
+  </style>
+</head>
+<body>
+  <img src="assets/images/logo.png" alt="TestHall Logo" class="logo">
+
+  <div class="main-content">
+    <h1 id="welcome-message">Welcome to TestHall!</h1>
+    <p id="sub-message">Your platform for academic excellence and growth.</p>
+    <a href="#" id="main-action-button" class="action-button">Getting Started</a>
+  </div>
+
+  <footer>
+    <p>&copy; 2024 TestHall. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // --- Background Image Rotation ---
+    const backgroundImages = [
+      'assets/images/background/bg1.jpg',
+      'assets/images/background/bg2.jpg',
+      'assets/images/background/bg3.jpg'
+    ];
+
+    // Preload images
+    backgroundImages.forEach((image) => {
+      const img = new Image();
+      img.src = image;
+    });
+
+    let currentIndex = Math.floor(Math.random() * backgroundImages.length);
+    document.body.style.backgroundImage = `url(${backgroundImages[currentIndex]})`;
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % backgroundImages.length;
+      document.body.style.backgroundImage = `url(${backgroundImages[currentIndex]})`;
+    }, 5000); // Change every 5 seconds
+
+    // --- Dynamic Button and Redirection ---
+    document.addEventListener('DOMContentLoaded', () => {
+      const mainActionButton = document.getElementById('main-action-button');
+      const loggedInUserId = localStorage.getItem('loggedInUserId');
+
+      if (loggedInUserId) {
+        // User is logged in
+        document.getElementById('welcome-message').textContent = 'Welcome Back to TestHall!';
+        document.getElementById('sub-message').textContent = 'Continue your journey towards excellence.';
+        mainActionButton.textContent = 'Go to Dashboard';
+        mainActionButton.href = 'pages/dashboard.html'; // Redirect to dashboard
+      } else {
+        // User is not logged in
+        mainActionButton.textContent = 'Login or Register';
+        mainActionButton.href = 'pages/login.html'; // Redirect to login page
+      }
+    });
+  </script>
+</body>
+</html>
